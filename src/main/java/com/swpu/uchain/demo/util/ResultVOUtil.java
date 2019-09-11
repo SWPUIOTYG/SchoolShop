@@ -25,4 +25,11 @@ public class ResultVOUtil {
         return resultVO;
 
     }
+
+    public static ResultVO error(int i, String defaultMessage) {
+        ResultVO resultVO=new ResultVO();
+        resultVO.setCode(i);
+        resultVO.setMsg(defaultMessage);
+        return resultVO;
+    }
 }

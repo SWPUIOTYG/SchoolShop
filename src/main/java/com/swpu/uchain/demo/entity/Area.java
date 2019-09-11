@@ -8,8 +8,6 @@ public class Area implements Serializable {
 
     private String areaName;
 
-    private Integer priority;
-
     private Date createTime;
 
     private Date lastEditTime;
@@ -32,13 +30,6 @@ public class Area implements Serializable {
         this.areaName = areaName == null ? null : areaName.trim();
     }
 
-    public Integer getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Integer priority) {
-        this.priority = priority;
-    }
 
     public Date getCreateTime() {
         return createTime;
@@ -64,7 +55,6 @@ public class Area implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", areaId=").append(areaId);
         sb.append(", areaName=").append(areaName);
-        sb.append(", priority=").append(priority);
         sb.append(", createTime=").append(createTime);
         sb.append(", lastEditTime=").append(lastEditTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

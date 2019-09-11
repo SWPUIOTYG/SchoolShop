@@ -10,9 +10,15 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
+/**
+ * @author EmiYkr
+ * @description 区域管理
+ */
 @Service
 public class AreaServiceImpl implements AreaService {
 
@@ -40,7 +46,8 @@ public class AreaServiceImpl implements AreaService {
         if(areaMapper.selectByPrimaryKey(area.getAreaId())== null){
             return ResultVOUtil.error(ResultEnum.AREA_NOT_EXIST);
         }
-        if(update(area)){
+        area.setLastEditTime(new Date());
+        if(areaMapper.updateByPrimaryKey(area)==1){
             return ResultVOUtil.success(area);
         }
         return ResultVOUtil.error(ResultEnum.SERVER_ERROR);
@@ -57,8 +64,9 @@ public class AreaServiceImpl implements AreaService {
         if(areaMapper.selectByPrimaryKey(areaId)==null){
             return ResultVOUtil.error(ResultEnum.AREA_NOT_EXIST);
         }
-        if(selectByAreaId(areaId)!=null){
-            return ResultVOUtil.success(selectByAreaId(areaId));
+        Area area=areaMapper.selectByPrimaryKey(areaId);
+        if(area!=null){
+            return ResultVOUtil.success(area);
         }
         return ResultVOUtil.error(ResultEnum.SERVER_ERROR);
     }
@@ -79,7 +87,10 @@ public class AreaServiceImpl implements AreaService {
         if(areaMapper.selectByAreaName(areaForm.getAreaName())!=null){
             return ResultVOUtil.error(ResultEnum.AREA_ALREADY_EXIST);
         }
+        Date date =new Date();
         Area area=new Area();
+        area.setCreateTime(date);
+        area.setLastEditTime(date);
         BeanUtils.copyProperties(areaForm,area);
         if(insert(area)){
             return ResultVOUtil.success(area);

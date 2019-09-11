@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swpu.uchain.demo.dao.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.swpu.uchain.demo.entity.Shop" >
+    <id column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="shop_category_id" property="shopCategoryId" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="shop_desc" property="shopDesc" jdbcType="VARCHAR" />
+    <result column="shop_addr" property="shopAddr" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="shop_img" property="shopImg" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_edit_time" property="lastEditTime" jdbcType="TIMESTAMP" />
+    <result column="enable_status" property="enableStatus" jdbcType="INTEGER" />
+    <result column="advice" property="advice" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_shop
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.swpu.uchain.demo.entity.Shop" >
+    insert into tb_shop (shop_id, owner_id, area_id, owner_name,
+      shop_category_id, shop_name, shop_desc, 
+      shop_addr, phone, shop_img, 
+      create_time, last_edit_time,
+      enable_status, advice)
+    values (#{shopId,jdbcType=INTEGER}, #{ownerId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER},
+      #{ownerName,jdbcType=VARCHAR},
+      #{shopCategoryId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{shopDesc,jdbcType=VARCHAR},
+      #{shopAddr,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{shopImg,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastEditTime,jdbcType=TIMESTAMP},
+      #{enableStatus,jdbcType=INTEGER}, #{advice,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.swpu.uchain.demo.entity.Shop" >
+    update tb_shop
+    set owner_id = #{ownerId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      owner_name=#{ownerName,jdbcType=VARCHAR},
+      shop_category_id = #{shopCategoryId,jdbcType=INTEGER},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_desc = #{shopDesc,jdbcType=VARCHAR},
+      shop_addr = #{shopAddr,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      shop_img = #{shopImg,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
+      enable_status = #{enableStatus,jdbcType=INTEGER},
+      advice = #{advice,jdbcType=VARCHAR}
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select shop_id, owner_id, area_id,owner_name, shop_category_id, shop_name, shop_desc, shop_addr,
+    phone, shop_img, create_time, last_edit_time, enable_status, advice
+    from tb_shop
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select shop_id, owner_id, area_id,owner_name, shop_category_id, shop_name, shop_desc, shop_addr,
+    phone, shop_img, create_time, last_edit_time, enable_status, advice
+    from tb_shop
+  </select>
+  <select id="selectByOwnerId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select shop_id, owner_id, area_id,owner_name, shop_category_id, shop_name, shop_desc, shop_addr,
+    phone,  create_time, enable_status
+    from tb_shop
+    where owner_id = #{ownerId,jdbcType=INTEGER}
+  </select>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swpu.uchain.demo.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.swpu.uchain.demo.entity.Product" >
+    <id column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_desc" property="productDesc" jdbcType="VARCHAR" />
+    <result column="img_addr" property="imgAddr" jdbcType="VARCHAR" />
+    <result column="normal_price" property="normalPrice" jdbcType="VARCHAR" />
+    <result column="promotion_price" property="promotionPrice" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_edit_time" property="lastEditTime" jdbcType="TIMESTAMP" />
+    <result column="enable_status" property="enableStatus" jdbcType="INTEGER" />
+    <result column="product_category_id" property="productCategoryId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_product
+    where product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.swpu.uchain.demo.entity.Product" >
+    insert into tb_product (product_id, product_name, product_desc, 
+      img_addr, normal_price, promotion_price, 
+      create_time, last_edit_time,
+      enable_status, product_category_id, shop_id
+      )
+    values (#{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productDesc,jdbcType=VARCHAR}, 
+      #{imgAddr,jdbcType=VARCHAR}, #{normalPrice,jdbcType=VARCHAR}, #{promotionPrice,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastEditTime,jdbcType=TIMESTAMP},
+      #{enableStatus,jdbcType=INTEGER}, #{productCategoryId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.swpu.uchain.demo.entity.Product" >
+    update tb_product
+    set product_name = #{productName,jdbcType=VARCHAR},
+      product_desc = #{productDesc,jdbcType=VARCHAR},
+      img_addr = #{imgAddr,jdbcType=VARCHAR},
+      normal_price = #{normalPrice,jdbcType=VARCHAR},
+      promotion_price = #{promotionPrice,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
+      enable_status = #{enableStatus,jdbcType=INTEGER},
+      product_category_id = #{productCategoryId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER}
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select product_id, product_name, product_desc, img_addr, normal_price, promotion_price, 
+    create_time, last_edit_time, enable_status, product_category_id, shop_id
+    from tb_product
+    where product_id = #{productId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select product_id, product_name, product_desc, img_addr, normal_price, promotion_price, 
+    create_time, last_edit_time, enable_status, product_category_id, shop_id
+    from tb_product
+  </select>
+  <select id="selectByShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select product_id, product_name, product_desc, img_addr, normal_price, promotion_price,
+    create_time, last_edit_time, enable_status, product_category_id, shop_id
+    from tb_product
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByProductName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select product_id, product_name, product_desc, img_addr, normal_price, promotion_price,
+    create_time, last_edit_time, enable_status, product_category_id, shop_id
+    from tb_product
+    where product_name = #{productName,jdbcType=VARCHAR}
+  </select>
+</mapper>

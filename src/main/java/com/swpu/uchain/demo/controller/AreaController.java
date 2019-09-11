@@ -7,45 +7,44 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.swpu.uchain.demo.entity.Area;
+
+import javax.validation.Valid;
 
 /**
  * @author EmiYkr
  */
 
 @RestController
-@Slf4j
 @Api(tags = "区域管理")
 @RequestMapping("/area")
+@ControllerAdvice
 public class AreaController {
     @Autowired
     private AreaService areaService;
 
     @ApiOperation("添加区域信息")
     @PostMapping("/addArea")
-    public Object addArea(AreaForm areaForm){
+    public Object addArea(@Valid AreaForm areaForm){
         return areaService.insertArea(areaForm);
     }
 
     @ApiOperation("删除区域信息")
     @GetMapping("/deleteArea")
-    public Object deleteArea(Integer areaId){
+    public Object deleteArea(@Valid Integer areaId){
         return areaService.deleteByAreaId(areaId);
     }
 
-    @ApiModelProperty("修改区域信息")
+    @ApiOperation("修改区域信息")
     @PostMapping("/updateArea")
-    public Object updateArea(Area area){
+    public Object updateArea(@Valid Area area){
         return areaService.updateArea(area);
     }
 
-    @ApiModelProperty("查找区域信息")
+    @ApiOperation("查找区域信息")
     @GetMapping("/findArea")
-    public Object findArea(Integer areaId){
+    public Object findArea(@Valid Integer areaId){
         return areaService.selectByAreaId(areaId);
     }
 
