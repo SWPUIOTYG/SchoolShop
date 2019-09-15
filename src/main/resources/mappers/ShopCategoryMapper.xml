@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swpu.uchain.demo.dao.ShopCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.swpu.uchain.demo.entity.ShopCategory" >
+    <id column="shop_category_id" property="shopCategoryId" jdbcType="INTEGER" />
+    <result column="shop_category_name" property="shopCategoryName" jdbcType="VARCHAR" />
+    <result column="shop_category_desc" property="shopCategoryDesc" jdbcType="VARCHAR" />
+    <result column="shop_category_img" property="shopCategoryImg" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_edit_time" property="lastEditTime" jdbcType="TIMESTAMP" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_shop_category
+    where shop_category_id = #{shopCategoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.swpu.uchain.demo.entity.ShopCategory" >
+    insert into tb_shop_category (shop_category_id, shop_category_name, 
+      shop_category_desc, shop_category_img, create_time, 
+      last_edit_time, parent_id)
+    values (#{shopCategoryId,jdbcType=INTEGER}, #{shopCategoryName,jdbcType=VARCHAR}, 
+      #{shopCategoryDesc,jdbcType=VARCHAR}, #{shopCategoryImg,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastEditTime,jdbcType=TIMESTAMP}, #{parentId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.swpu.uchain.demo.entity.ShopCategory" >
+    update tb_shop_category
+    set shop_category_name = #{shopCategoryName,jdbcType=VARCHAR},
+      shop_category_desc = #{shopCategoryDesc,jdbcType=VARCHAR},
+      shop_category_img = #{shopCategoryImg,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
+      parent_id = #{parentId,jdbcType=INTEGER}
+    where shop_category_id = #{shopCategoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select shop_category_id, shop_category_name, shop_category_desc, shop_category_img, 
+    create_time, last_edit_time, parent_id
+    from tb_shop_category
+    where shop_category_id = #{shopCategoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select shop_category_id, shop_category_name, shop_category_desc, shop_category_img, 
+    create_time, last_edit_time, parent_id
+    from tb_shop_category
+  </select>
+</mapper>

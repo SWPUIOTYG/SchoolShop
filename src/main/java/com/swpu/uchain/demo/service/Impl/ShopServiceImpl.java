@@ -8,9 +8,11 @@ import com.swpu.uchain.demo.form.ShopForm;
 import com.swpu.uchain.demo.service.ShopService;
 import com.swpu.uchain.demo.util.ResultVOUtil;
 import com.swpu.uchain.demo.vo.ResultVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.List;
  * @description  店家增加商铺等
  */
 @Service
+@Transactional
 public class ShopServiceImpl implements ShopService {
 
     @Autowired

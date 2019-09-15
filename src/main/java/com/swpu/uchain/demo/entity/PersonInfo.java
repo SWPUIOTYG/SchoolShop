@@ -16,6 +16,9 @@ public class PersonInfo implements Serializable {
 
     private Integer enableStatus;
 
+    /**
+     * 1:顾客 2:店家 3:超级管理员
+     */
     private Integer userType;
 
     private Date createTime;

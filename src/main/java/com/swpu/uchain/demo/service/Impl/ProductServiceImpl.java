@@ -7,15 +7,18 @@ import com.swpu.uchain.demo.form.ProductForm;
 import com.swpu.uchain.demo.service.ProductService;
 import com.swpu.uchain.demo.util.ResultVOUtil;
 import com.swpu.uchain.demo.vo.ResultVO;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
     @Autowired

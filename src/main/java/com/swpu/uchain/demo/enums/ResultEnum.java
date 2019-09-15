@@ -14,6 +14,8 @@ public enum ResultEnum {
     NO_SHOP(422,"无商铺"),
     PRODUCT_ALREADY_EXIST(433,"商品已存在"),
     PRODUCT_NOT_EXIST(434,"商品不存在"),
+    SHOP_CATEGORY_NOT_EXIST(435,"商铺种类不存在"),
+    SHOP_CATEGORY_ALREADY_EXIST(436,"商铺类型已存在"),
     ;
 
     private Integer code;

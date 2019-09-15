@@ -1,21 +1,13 @@
 package com.swpu.uchain.demo.entity;
 
-import lombok.Data;
-
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author EmiYkr
- */
-@Data
-public class ShopCategory {
-
-    private Long shopCategoryId;
+public class ShopCategory implements Serializable {
+    private Integer shopCategoryId;
 
     private String shopCategoryName;
-    /**
-     * 描述
-     */
+
     private String shopCategoryDesc;
 
     private String shopCategoryImg;
@@ -24,5 +16,81 @@ public class ShopCategory {
 
     private Date lastEditTime;
 
-    private ShopCategory parent;
+    private Integer parentId;
+
+    private static final long serialVersionUID = 1L;
+
+    public Integer getShopCategoryId() {
+        return shopCategoryId;
+    }
+
+    public void setShopCategoryId(Integer shopCategoryId) {
+        this.shopCategoryId = shopCategoryId;
+    }
+
+    public String getShopCategoryName() {
+        return shopCategoryName;
+    }
+
+    public void setShopCategoryName(String shopCategoryName) {
+        this.shopCategoryName = shopCategoryName == null ? null : shopCategoryName.trim();
+    }
+
+    public String getShopCategoryDesc() {
+        return shopCategoryDesc;
+    }
+
+    public void setShopCategoryDesc(String shopCategoryDesc) {
+        this.shopCategoryDesc = shopCategoryDesc == null ? null : shopCategoryDesc.trim();
+    }
+
+    public String getShopCategoryImg() {
+        return shopCategoryImg;
+    }
+
+    public void setShopCategoryImg(String shopCategoryImg) {
+        this.shopCategoryImg = shopCategoryImg == null ? null : shopCategoryImg.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getLastEditTime() {
+        return lastEditTime;
+    }
+
+    public void setLastEditTime(Date lastEditTime) {
+        this.lastEditTime = lastEditTime;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", shopCategoryId=").append(shopCategoryId);
+        sb.append(", shopCategoryName=").append(shopCategoryName);
+        sb.append(", shopCategoryDesc=").append(shopCategoryDesc);
+        sb.append(", shopCategoryImg=").append(shopCategoryImg);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", lastEditTime=").append(lastEditTime);
+        sb.append(", parentId=").append(parentId);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
+    }
 }
