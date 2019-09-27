@@ -7,9 +7,9 @@ import java.util.Date;
 @Data
 public class ProductCategory {
 
-    private Long productCategoryId;
+    private Integer productCategoryId;
 
-    private Long shopId;
+    private Integer shopId;
 
     private String productCategoryName;
 

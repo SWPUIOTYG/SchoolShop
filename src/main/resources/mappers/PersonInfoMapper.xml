@@ -7,10 +7,14 @@
     <result column="profile_img" property="profileImg" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="VARCHAR" />
-    <result column="enable_status" property="enableStatus" jdbcType="INTEGER" />
-    <result column="user_type" property="userType" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="last_edit_time" property="lastEditTime" jdbcType="TIMESTAMP" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
+    <result column="accountNonExpired" property="accountnonexpired" jdbcType="INTEGER" />
+    <result column="accountNonLocked" property="accountnonlocked" jdbcType="INTEGER" />
+    <result column="credentialsNonExpired" property="credentialsnonexpired" jdbcType="INTEGER" />
+    <result column="enabled" property="enabled" jdbcType="INTEGER" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_person_info
@@ -18,13 +22,15 @@
   </delete>
   <insert id="insert" parameterType="com.swpu.uchain.demo.entity.PersonInfo" >
     insert into tb_person_info (user_id, `name`, profile_img, 
-      email, gender, enable_status, 
-      user_type, create_time, last_edit_time
-      )
+      email, gender, create_time, 
+      last_edit_time, `password`, `role`, 
+      accountNonExpired, accountNonLocked, credentialsNonExpired, 
+      enabled)
     values (#{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{profileImg,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{enableStatus,jdbcType=INTEGER}, 
-      #{userType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{lastEditTime,jdbcType=TIMESTAMP}
-      )
+      #{email,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastEditTime,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, 
+      #{accountnonexpired,jdbcType=INTEGER}, #{accountnonlocked,jdbcType=INTEGER}, #{credentialsnonexpired,jdbcType=INTEGER}, 
+      #{enabled,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.swpu.uchain.demo.entity.PersonInfo" >
     update tb_person_info
@@ -32,21 +38,25 @@
       profile_img = #{profileImg,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=VARCHAR},
-      enable_status = #{enableStatus,jdbcType=INTEGER},
-      user_type = #{userType,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP}
+      last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
+      `password` = #{password,jdbcType=VARCHAR},
+      `role` = #{role,jdbcType=VARCHAR},
+      accountNonExpired = #{accountnonexpired,jdbcType=INTEGER},
+      accountNonLocked = #{accountnonlocked,jdbcType=INTEGER},
+      credentialsNonExpired = #{credentialsnonexpired,jdbcType=INTEGER},
+      enabled = #{enabled,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select user_id, `name`, profile_img, email, gender, enable_status, user_type, create_time, 
-    last_edit_time
+    select user_id, `name`, profile_img, email, gender, create_time, last_edit_time, 
+    `password`, `role`, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled
     from tb_person_info
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select user_id, `name`, profile_img, email, gender, enable_status, user_type, create_time, 
-    last_edit_time
+    select user_id, `name`, profile_img, email, gender, create_time, last_edit_time, 
+    `password`, `role`, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled
     from tb_person_info
   </select>
 </mapper>

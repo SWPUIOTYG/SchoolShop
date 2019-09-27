@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swpu.uchain.demo.dao.ProductCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.swpu.uchain.demo.entity.ProductCategory" >
+    <id column="product_category_id" property="productCategoryId" jdbcType="INTEGER" />
+    <result column="product_category_name" property="productCategoryName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_product_category
+    where product_category_id = #{productCategoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.swpu.uchain.demo.entity.ProductCategory" >
+    insert into tb_product_category (product_category_id, product_category_name, 
+      create_time, shop_id)
+    values (#{productCategoryId,jdbcType=INTEGER}, #{productCategoryName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{shopId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.swpu.uchain.demo.entity.ProductCategory" >
+    update tb_product_category
+    set product_category_name = #{productCategoryName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      shop_id = #{shopId,jdbcType=INTEGER}
+    where product_category_id = #{productCategoryId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select product_category_id, product_category_name, create_time, shop_id
+    from tb_product_category
+    where product_category_id = #{productCategoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllByShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select product_category_id, product_category_name, create_time, shop_id
+    from tb_product_category
+    where shop_id=#{shopId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByProductId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select product_category_id, product_category_name, create_time, shop_id
+    from tb_product_category
+    where product_category_id = #{productCategoryId,jdbcType=INTEGER}
+  </select>
+  <select id="GetShop" resultType="com.swpu.uchain.demo.dto.ShopDTO" parameterType="java.lang.Integer">
+      select shop_id,owner_id,shop_category_id,shop_name
+      from tb_shop
+      where shop_id= #{shopId,jdbcType=INTEGER}
+  </select>
+</mapper>

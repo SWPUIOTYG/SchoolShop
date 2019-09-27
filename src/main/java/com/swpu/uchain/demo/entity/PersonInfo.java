@@ -1,9 +1,14 @@
 package com.swpu.uchain.demo.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
-public class PersonInfo implements Serializable {
+public class PersonInfo implements Serializable, UserDetails {
     private Integer userId;
 
     private String name;
@@ -14,108 +19,72 @@ public class PersonInfo implements Serializable {
 
     private String gender;
 
-    private Integer enableStatus;
-
-    /**
-     * 1:顾客 2:店家 3:超级管理员
-     */
-    private Integer userType;
-
     private Date createTime;
 
     private Date lastEditTime;
 
+    private String password;
+
+    private String role;
+
+
+    /**
+     *数据库中的类型 int
+     */
+    private boolean accountnonexpired;
+
+    private boolean accountnonlocked;
+
+    private boolean credentialsnonexpired;
+
+    private boolean enabled;
+
     private static final long serialVersionUID = 1L;
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getProfileImg() {
-        return profileImg;
-    }
-
-    public void setProfileImg(String profileImg) {
-        this.profileImg = profileImg == null ? null : profileImg.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
-    }
-
-    public Integer getEnableStatus() {
-        return enableStatus;
-    }
-
-    public void setEnableStatus(Integer enableStatus) {
-        this.enableStatus = enableStatus;
-    }
-
-    public Integer getUserType() {
-        return userType;
-    }
-
-    public void setUserType(Integer userType) {
-        this.userType = userType;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getLastEditTime() {
-        return lastEditTime;
-    }
-
-    public void setLastEditTime(Date lastEditTime) {
-        this.lastEditTime = lastEditTime;
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", userId=").append(userId);
-        sb.append(", name=").append(name);
-        sb.append(", profileImg=").append(profileImg);
-        sb.append(", email=").append(email);
-        sb.append(", gender=").append(gender);
-        sb.append(", enableStatus=").append(enableStatus);
-        sb.append(", userType=").append(userType);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", lastEditTime=").append(lastEditTime);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public String getPassword() {
+        return password;
     }
+
+    @Override
+    public String getUsername() {
+        return name;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return accountnonexpired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return accountnonlocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return credentialsnonexpired;
+    }
+
+    public PersonInfo(String name,String password,String role,boolean accountnonexpired,boolean accountnonlocked,boolean credentialsnonexpired,boolean enabled){
+        this.name=name;
+        this.password=password;
+        this.role=role;
+        this.accountnonexpired=accountnonexpired;
+        this.accountnonlocked=accountnonlocked;
+        this.credentialsnonexpired=credentialsnonexpired;
+        this.enabled=enabled;
+    }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // TODO Auto-generated method stub
+        return AuthorityUtils.commaSeparatedStringToAuthorityList(role);
+    }
+
 }
