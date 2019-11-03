@@ -4,6 +4,7 @@ import com.swpu.uchain.demo.entity.HeadLine;
 import java.util.List;
 
 public interface HeadLineMapper {
+
     int deleteByPrimaryKey(Integer lineId);
 
     int insert(HeadLine record);

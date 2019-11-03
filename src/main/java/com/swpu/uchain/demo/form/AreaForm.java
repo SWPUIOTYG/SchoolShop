@@ -17,7 +17,4 @@ public class AreaForm {
     @ApiModelProperty("区域名称")
     private String areaName;
 
-
-
-
 }

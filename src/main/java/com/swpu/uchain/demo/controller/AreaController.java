@@ -21,6 +21,7 @@ import javax.validation.Valid;
 @RequestMapping("/area")
 @ControllerAdvice
 public class AreaController {
+
     @Autowired
     private AreaService areaService;
 

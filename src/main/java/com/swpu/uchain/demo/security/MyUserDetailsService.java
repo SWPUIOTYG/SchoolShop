@@ -1,6 +1,4 @@
 package com.swpu.uchain.demo.security;
-
-import com.swpu.uchain.demo.entity.PersonInfo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

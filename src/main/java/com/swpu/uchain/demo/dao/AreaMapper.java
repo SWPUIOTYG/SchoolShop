@@ -4,6 +4,7 @@ import com.swpu.uchain.demo.entity.Area;
 import java.util.List;
 
 public interface AreaMapper {
+
     int deleteByPrimaryKey(Integer areaId);
 
     int insert(Area record);

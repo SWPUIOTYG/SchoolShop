@@ -61,7 +61,9 @@
 
 <!--        <table tableName="tb_head_line" domainObjectName="HeadLine" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
 <!--        <table tableName="tb_area" domainObjectName="Area" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
-        <table tableName="tb_person_info" domainObjectName="PersonInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+<!--        <table tableName="tb_local_auth" domainObjectName="LocalAuth" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
+        <table tableName="tb_product_img" domainObjectName="WechatAuth" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
 
     </context>
 </generatorConfiguration>
